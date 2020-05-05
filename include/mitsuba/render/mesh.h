@@ -14,7 +14,7 @@ template <typename Float, typename Spectrum>
 class MTS_EXPORT_RENDER Mesh : public Shape<Float, Spectrum> {
 public:
     MTS_IMPORT_TYPES()
-    MTS_IMPORT_BASE(Shape, m_mesh, set_children, m_emitter)
+    MTS_IMPORT_BASE(Shape, m_to_world, m_mesh, set_children, m_emitter)
 
     using InputFloat = float;
     using InputPoint3f  = Point<InputFloat, 3>;
@@ -329,7 +329,6 @@ protected:
 
     std::string m_name;
     ScalarBoundingBox3f m_bbox;
-    ScalarTransform4f m_to_world;
 
     ScalarSize m_vertex_count = 0;
     ScalarSize m_face_count = 0;

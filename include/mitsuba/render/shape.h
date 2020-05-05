@@ -1,6 +1,7 @@
 #pragma once
 
 #include <mitsuba/render/records.h>
+#include <mitsuba/core/transform.h>
 #include <mitsuba/core/bbox.h>
 
 NAMESPACE_BEGIN(mitsuba)
@@ -337,6 +338,9 @@ protected:
     ref<Medium> m_interior_medium;
     ref<Medium> m_exterior_medium;
     std::string m_id;
+
+    ScalarTransform4f m_to_world;
+    ScalarTransform4f m_to_object;
 };
 
 MTS_EXTERN_CLASS_RENDER(Shape)
