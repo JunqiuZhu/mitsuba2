@@ -94,7 +94,7 @@ This makes it a good default choice for lighting new scenes.
 template <typename Float, typename Spectrum>
 class Sphere final : public Shape<Float, Spectrum> {
 public:
-    MTS_IMPORT_BASE(Shape, bsdf, emitter, is_emitter, sensor, is_sensor, set_children)
+    MTS_IMPORT_BASE(Shape, bsdf, emitter, is_emitter, sensor, is_sensor, set_children, get_children_string)
     MTS_IMPORT_TYPES()
 
     using typename Base::ScalarSize;
@@ -438,6 +438,7 @@ public:
         oss << "Sphere[" << std::endl
             << "  radius = "  << m_radius << "," << std::endl
             << "  center = "  << m_center << std::endl
+            << "  " << string::indent(get_children_string()) << std::endl
             << "]";
         return oss.str();
     }

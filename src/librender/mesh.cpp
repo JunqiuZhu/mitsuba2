@@ -43,14 +43,14 @@ MTS_VARIANT Mesh<Float, Spectrum>::Mesh(const std::string &name, Struct *vertex_
                           const std::string &suffix_exp,
                           Struct::Type type_exp) {
         if (idx >= s->field_count())
-            Throw("Mesh::Mesh(): Incompatible data structure %s", s->to_string());
+            Throw("Mesh::Mesh(): Incompatible data structure %s", s);
         auto field = s->operator[](idx);
         std::string suffix = field.name;
         auto it = suffix.rfind(".");
         if (it != std::string::npos)
             suffix = suffix.substr(it + 1);
         if (suffix != suffix_exp || field.type != type_exp)
-            Throw("Mesh::Mesh(): Incompatible data structure %s", s->to_string());
+            Throw("Mesh::Mesh(): Incompatible data structure %s", s);
     };
 
     check_field(vertex_struct, 0, "x",  struct_type_v<InputFloat>);

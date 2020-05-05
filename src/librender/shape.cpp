@@ -348,6 +348,22 @@ MTS_VARIANT void Shape<Float, Spectrum>::set_children() {
         m_sensor->set_shape(this);
 };
 
+MTS_VARIANT std::string Shape<Float, Spectrum>::get_children_string() const {
+    std::vector<std::pair<std::string, const Object*>> children;
+    if (m_bsdf) children.push_back({ "bsdf", m_bsdf });
+    if (m_emitter) children.push_back({ "emitter", m_emitter });
+    if (m_sensor) children.push_back({ "sensor", m_sensor });
+    if (m_interior_medium) children.push_back({ "interior_medium", m_interior_medium });
+    if (m_exterior_medium) children.push_back({ "exterior_medium", m_exterior_medium });
+
+    std::ostringstream oss;
+    size_t i = 0;
+    for (const auto& [name, child]: children)
+        oss << name << " = " << child << (++i < children.size() ? ",\n" : "");
+
+    return oss.str();
+}
+
 MTS_IMPLEMENT_CLASS_VARIANT(Shape, Object, "shape")
 MTS_INSTANTIATE_CLASS(Shape)
 NAMESPACE_END(mitsuba)

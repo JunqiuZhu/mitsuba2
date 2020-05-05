@@ -69,7 +69,7 @@ The following XML snippet showcases a simple example of a textured rectangle:
 template <typename Float, typename Spectrum>
 class Rectangle final : public Shape<Float, Spectrum> {
 public:
-    MTS_IMPORT_BASE(Shape, bsdf, emitter, is_emitter, sensor, is_sensor, set_children)
+    MTS_IMPORT_BASE(Shape, bsdf, emitter, is_emitter, sensor, is_sensor, set_children, get_children_string)
     MTS_IMPORT_TYPES()
 
     using typename Base::ScalarSize;
@@ -267,7 +267,7 @@ public:
             << "  object_to_world = " << string::indent(m_object_to_world) << "," << std::endl
             << "  frame = " << string::indent(m_frame) << "," << std::endl
             << "  inv_surface_area = " << m_inv_surface_area << "," << std::endl
-            << "  bsdf = " << string::indent(bsdf()->to_string()) << std::endl
+            << "  " << string::indent(get_children_string()) << std::endl
             << "]";
         return oss.str();
     }

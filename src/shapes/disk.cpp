@@ -68,7 +68,7 @@ The following XML snippet instantiates an example of a textured disk shape:
 template <typename Float, typename Spectrum>
 class Disk final : public Shape<Float, Spectrum> {
 public:
-    MTS_IMPORT_BASE(Shape, bsdf, emitter, is_emitter, sensor, is_sensor, set_children)
+    MTS_IMPORT_BASE(Shape, bsdf, emitter, is_emitter, sensor, is_sensor, set_children, get_children_string)
     MTS_IMPORT_TYPES()
 
     using typename Base::ScalarSize;
@@ -246,7 +246,7 @@ public:
             << "  n = "  << m_frame.n << "," << std::endl
             << "  du = "  << m_du << "," << std::endl
             << "  dv = "  << m_dv << "," << std::endl
-            << "  bsdf = " << string::indent(bsdf()->to_string()) << std::endl
+            << "  " << string::indent(get_children_string()) << std::endl
             << "]";
         return oss.str();
     }

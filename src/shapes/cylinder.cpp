@@ -75,7 +75,7 @@ A simple example for instantiating a cylinder, whose interior is visible:
 template <typename Float, typename Spectrum>
 class Cylinder final : public Shape<Float, Spectrum> {
 public:
-    MTS_IMPORT_BASE(Shape, bsdf, emitter, is_emitter, sensor, is_sensor, set_children)
+    MTS_IMPORT_BASE(Shape, bsdf, emitter, is_emitter, sensor, is_sensor, set_children, get_children_string)
     MTS_IMPORT_TYPES()
 
     using typename Base::ScalarIndex;
@@ -393,7 +393,7 @@ public:
             << "  p1 = "  << m_object_to_world * Point3f(0.f, 0.f, m_length) << "," << std::endl
             << "  radius = "  << m_radius << "," << std::endl
             << "  length = "  << m_length << "," << std::endl
-            << "  bsdf = " << string::indent(bsdf()->to_string()) << std::endl
+            << "  " << string::indent(get_children_string()) << std::endl
             << "]";
         return oss.str();
     }

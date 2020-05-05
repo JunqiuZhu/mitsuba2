@@ -328,6 +328,7 @@ protected:
 
     /// Explicitly register this shape as the parent of the provided sub-objects (emitters, etc.)
     void set_children();
+    std::string get_children_string() const;
 protected:
     bool m_mesh = false;
     ref<BSDF> m_bsdf;
