@@ -326,7 +326,7 @@ protected:
     inline Shape() { }
     virtual ~Shape();
 
-    /// Set this shape to its associated children
+    /// Explicitly register this shape as the parent of the provided sub-objects (emitters, etc.)
     void set_children();
 protected:
     bool m_mesh = false;
