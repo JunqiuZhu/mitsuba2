@@ -75,10 +75,8 @@ public:
     using typename Base::ScalarSize;
 
     Rectangle(const Properties &props) : Base(props) {
-        m_to_world = props.transform("to_world", ScalarTransform4f());
         if (props.bool_("flip_normals", false))
-            m_to_world =
-                m_to_world * ScalarTransform4f::scale(ScalarVector3f(1.f, 1.f, -1.f));
+            m_to_world = m_to_world * ScalarTransform4f::scale(ScalarVector3f(1.f, 1.f, -1.f));
 
         m_to_object = m_to_world.inverse();
 

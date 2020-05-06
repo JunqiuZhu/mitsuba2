@@ -31,6 +31,9 @@ NAMESPACE_BEGIN(mitsuba)
 #endif
 
 MTS_VARIANT Shape<Float, Spectrum>::Shape(const Properties &props) : m_id(props.id()) {
+    m_to_world = props.transform("to_world", ScalarTransform4f());
+    m_to_object = m_to_world.inverse();
+
     for (auto &kv : props.objects()) {
         Emitter *emitter = dynamic_cast<Emitter *>(kv.second.get());
         Sensor *sensor = dynamic_cast<Sensor *>(kv.second.get());

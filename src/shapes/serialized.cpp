@@ -186,9 +186,6 @@ public:
         if (!fs::exists(file_path))
             fail("file not found");
 
-        // Object-space to world-space transformation
-        ScalarTransform4f to_world = props.transform("to_world", ScalarTransform4f());
-
         /// When the file contains multiple meshes, this index specifies which one to load
         int shape_index = props.int_("shape_index", 0);
         if (shape_index < 0)
@@ -328,12 +325,12 @@ public:
 
         // Post-processing
         for (ScalarSize i = 0; i < m_vertex_count; ++i) {
-            ScalarPoint3f p = to_world * vertex_position(i);
+            ScalarPoint3f p = m_to_world * vertex_position(i);
             store_unaligned(vertex(i), p);
             m_bbox.expand(p);
 
             if (has_vertex_normals()) {
-                ScalarNormal3f n = normalize(to_world * vertex_normal(i));
+                ScalarNormal3f n = normalize(m_to_world * vertex_normal(i));
                 store_unaligned(vertex(i) + m_normal_offset, n);
             }
 
